@@ -12,6 +12,9 @@ function createStore() {
 
     const subscribe = (listener) => {
         listeners.push(listener);
+        return () => {
+            listeners = listeners.filter((l) => l !== listener);
+        }
     }
 
     return {
@@ -24,6 +27,8 @@ const store = createStore();
 store.subscribe(() => {
     console.log('The new state is: ', store.getState());
 });
-store.subscribe(() => {
+const unsubscribe = store.subscribe(() => {
     console.log('The store changed.');
-})
+});
+
+unsubscribe();

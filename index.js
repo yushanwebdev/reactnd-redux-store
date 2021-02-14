@@ -55,6 +55,13 @@ function goals(state = [], action) {
     }
 }
 
+function app(state = {}, action) {
+    return {
+        todos: todos(state.todos, action),
+        goals: goals(state.goals, action)
+    }
+}
+ 
 const store = createStore(todos);
 
 store.subscribe(() => {
@@ -67,5 +74,13 @@ store.dispatch({
         id: 0,
         name: 'Learn Redux',
         complete: false
+    }
+});
+
+store.dispatch({
+    type: 'ADD_GOAL',
+    goal: {
+        id: 1,
+        name: 'Lose 20 pounds'
     }
 });

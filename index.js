@@ -61,7 +61,10 @@ function app(state = {}, action) {
         goals: goals(state.goals, action)
     }
 }
- 
+
+/*
+Passing the root reducer to our store since our createStore function can only take one reducer.
+*/
 const store = createStore(app);
 
 store.subscribe(() => {

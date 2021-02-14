@@ -19,7 +19,7 @@ function createStore(reducer) {
     }
 
     const dispatch = (action) => {
-        state = todos(state, action);
+        state = reducer(state, action);
         listeners.forEach((listener) => listener());
     } 
 
@@ -32,7 +32,6 @@ function createStore(reducer) {
 
 // App Code
 function todos(state = [], action) {
-    debugger;
     switch(action.type) {
         case 'ADD_TODO':
             return state.concat([action.todo]);
@@ -63,7 +62,7 @@ function app(state = {}, action) {
     }
 }
  
-const store = createStore(todos);
+const store = createStore(app);
 
 store.subscribe(() => {
     console.log('The new state is:', store.getState());

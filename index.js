@@ -39,7 +39,7 @@ function todos(state = [], action) {
             return state.filter((todo) => todo.id !== action.id);
         case 'TOGGLE_TODO':
             return state.map((todo) => todo.id !== action.id ? todo : Object.assign({}, todo, { complete: !todo.complete }));
-        case DEFAULT:
+        default:
             return state;
     }
 }
@@ -50,7 +50,7 @@ function goals(state = [], action) {
             return state.concat([action.goal]);
         case 'REMOVE_GOAL':
             return state.filter((goal) => goal.id !== action.id);
-        case DEFAULT:
+        default:
             return state;
     }
 }

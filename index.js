@@ -32,7 +32,8 @@ function createStore(reducer) {
 
 // App Code
 function todos(state = [], action) {
-    switch(action) {
+    debugger;
+    switch(action.type) {
         case 'ADD_TODO':
             return state.concat([action.todo]);
         case 'REMOVE_TODO':
@@ -45,7 +46,7 @@ function todos(state = [], action) {
 }
 
 function goals(state = [], action) {
-    switch(action) {
+    switch(action.type) {
         case 'ADD_GOAL':
             return state.concat([action.goal]);
         case 'REMOVE_GOAL':

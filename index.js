@@ -42,7 +42,18 @@ function todos(state = [], action) {
         case DEFAULT:
             return state;
     }
-} 
+}
+
+function goals(state = [], action) {
+    switch(action) {
+        case 'ADD_GOAL':
+            return state.concat([action.goal]);
+        case 'REMOVE_GOAL':
+            return state.filter((goal) => goal.id !== action.id);
+        case DEFAULT:
+            return state;
+    }
+}
 
 const store = createStore(todos);
 

@@ -139,6 +139,9 @@
         store.subscribe(() => {
             const { todos, goals } = store.getState();
 
+            document.getElementById('todos').innerHTML = '';
+            document.getElementById('goals').innerHTML = '';
+
             todos.forEach(addTodoToDOM);
             goals.forEach(addGoalToDOM);
         });

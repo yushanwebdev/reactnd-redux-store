@@ -59,12 +59,14 @@
         }
 
         // App Code
+        // Constants
         const ADD_TODO = 'ADD_TODO';
         const REMOVE_TODO = 'REMOVE_TODO';
         const TOGGLE_TODO = 'TOGGLE_TODO';
         const ADD_GOAL = 'ADD_GOAL';
         const REMOVE_GOAL = 'REMOVE_GOAL';
 
+        // Action Creators
         function addTodoAction(todo) {
             return {
                 type: ADD_TODO,
@@ -100,6 +102,7 @@
             }
         }
 
+        // Reducers
         function todos(state = [], action) {
             switch (action.type) {
                 case ADD_TODO:
@@ -124,6 +127,7 @@
             }
         }
 
+        // Root Reducer
         function app(state = {}, action) {
             return {
                 todos: todos(state.todos, action),
@@ -136,6 +140,7 @@
         */
         const store = createStore(app);
 
+        // Listen for changes
         store.subscribe(() => {
             const { todos, goals } = store.getState();
 
@@ -146,6 +151,7 @@
             goals.forEach(addGoalToDOM);
         });
 
+        // Update the state with new Todo
         function addTodo() {
             const input = document.getElementById('todo');
             const name = input.value;
@@ -158,6 +164,7 @@
             }))
         }
 
+        // Update the state with new Goal
         function addGoal() {
             const input = document.getElementById('goal');
             const name = input.value;
@@ -169,30 +176,52 @@
             }))
         }
 
+        // Submit buttons
         document.getElementById('todoBtn')
             .addEventListener('click', addTodo);
         document.getElementById('goalBtn')
             .addEventListener('click', addGoal);
 
+        // Add Todo Items to the DOM
         function addTodoToDOM(todo) {
             const node = document.createElement('li');
             const text = document.createTextNode(todo.name);
+            let child = text;
 
-            node.appendChild(text);
+            node.setAttribute('data-id', todo.id); 
+
+            if(todo.complete) {
+                child = document.createElement('strike').appendChild(text);
+            }
+
+            node.appendChild(child);
 
             document.getElementById('todos')
                 .appendChild(node);
         } 
 
+        // Add Goals to the DOM
         function addGoalToDOM(goal) {
             const node = document.createElement('li');
             const text = document.createTextNode(goal.name);
 
+            node.setAttribute('data-id', goal.id);
             node.appendChild(text);
 
             document.getElementById('goals')
                 .appendChild(node);
         }
+
+        // Toggle the Todo 
+        function todoToggle(ele) {
+            const id = ele.target.dataset.id;
+            if(id) {
+                store.dispatch(toggleTodoAction(id));   
+            }
+        }
+
+        document.getElementById('todos')
+            .addEventListener('click', todoToggle, true);
     </script>
 </body>
 

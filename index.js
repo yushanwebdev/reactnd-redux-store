@@ -8,14 +8,14 @@ function createStore() {
     let state;
     let listeners = [];
 
-    const getState = () => state;
+    const getState = () => listeners;
 
     const subscribe = (listener) => {
         listeners.push(listener);
         return () => {
             listeners = listeners.filter((l) => l !== listener);
         }
-    }
+    } // Here just return function with the equipment to remove the relevant listener. After execute this returned function the listener will remove from the listeners array.
 
     return {
         getState,
@@ -32,3 +32,5 @@ const unsubscribe = store.subscribe(() => {
 });
 
 unsubscribe();
+
+// [Q1] How does the last listener get an unsubscribe name ? (Refer last-listener.png)

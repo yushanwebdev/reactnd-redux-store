@@ -191,6 +191,7 @@
             node.setAttribute('data-id', todo.id); 
 
             if(todo.complete) {
+                // <strike> element is deprecated in HTML4
                 child = document.createElement('strike').appendChild(text);
             }
 

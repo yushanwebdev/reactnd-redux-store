@@ -111,13 +111,22 @@
             return next(action); // next is going to be the next middleware in line if we have more than one middleware or it's  going to be dispatch.
         }
 
+        const logger = (store) => (next) => (action) => {
+            console.group(action.type);
+                console.log('The action: ', action);
+                const result = next(action);
+                console.log('The new state: ', store.getState());
+            console.groupEnd();
+            return result;
+        }
+
         /*
         Passing the root reducer to our store since our createStore function can only take one reducer.
         */
         const store = Redux.createStore(Redux.combineReducers({
             todos,
             goals
-        }), Redux.applyMiddleware(checker));
+        }), Redux.applyMiddleware(checker, logger));
 
         store.subscribe(() => {
             const { todos, goals } = store.getState();

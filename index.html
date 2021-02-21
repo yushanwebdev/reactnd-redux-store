@@ -138,7 +138,7 @@
             const name = input.value;
             input.value = '';
 
-            checkAndDispatch(store, addTodoAction({
+            store.dispatch(addTodoAction({
                 id: generateId(),
                 name,
                 complete: false
@@ -150,7 +150,7 @@
             const name = input.value;
             input.value = '';
 
-            checkAndDispatch(store, addGoalAction({
+            store.dispatch(addGoalAction({
                 id: generateId(),
                 name
             }))
@@ -173,7 +173,7 @@
             const text = document.createTextNode(todo.name);
 
             const removeBtn = createRemoveButton(() => {
-                checkAndDispatch(store, removeTodoAction(todo.id));
+                store.dispatch(removeTodoAction(todo.id));
             });
 
             node.appendChild(text);
@@ -181,7 +181,7 @@
             node.style.textDecoration = todo.complete ? 'line-through' : 'none';
 
             node.addEventListener('click', () => {
-                checkAndDispatch(store, toggleTodoAction(todo.id));
+                store.dispatch(toggleTodoAction(todo.id));
             });
 
             document.getElementById('todos')
@@ -193,7 +193,7 @@
             const text = document.createTextNode(goal.name);
 
             const removeBtn = createRemoveButton(() => {
-                checkAndDispatch(store, removeGoalAction(goal.id));
+                store.dispatch(removeGoalAction(goal.id));
             });
 
             node.appendChild(text);

@@ -110,7 +110,7 @@
                         return alert("Nope, That's a bad idea.");
                     }
 
-                    return store.dispatch(action);
+                    return next(action);
                 }
             }
         }

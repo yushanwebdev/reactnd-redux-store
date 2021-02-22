@@ -234,7 +234,7 @@
                 const name = this.input.value;
                 this.input.value = '';
 
-                store.dispatch(addTodoAction({
+                this.props.store.dispatch(addTodoAction({
                     id: generateId(),
                     name,
                     complete: false
@@ -271,7 +271,7 @@
             render() {
                 return (
                     <div>
-                        <Todos />
+                        <Todos store={this.props.store} />
                         <Goals />
                     </div>
                 )
@@ -279,7 +279,7 @@
         }
 
         ReactDOM.render(
-            <App />,
+            <App store={store} />,
             document.getElementById('app')
         )
     </script>

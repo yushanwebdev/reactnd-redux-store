@@ -233,6 +233,10 @@
                 return (
                     <div>
                         <h1>Todos</h1>
+                        <input 
+                            type='text'
+                            placeholder='Add Todo'
+                            ref={(input) => this.input = input} />
                         <List />
                     </div>
                 )

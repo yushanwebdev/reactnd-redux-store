@@ -220,7 +220,7 @@
     <script type="text/babel">
         class List extends React.Component {
             render() {
-                return(
+                return (
                     <ul>
                         <li>List</li>
                     </ul>
@@ -230,7 +230,7 @@
 
         class Todos extends React.Component {
             render() {
-                return(
+                return (
                     <div>
                         <h1>Todos</h1>
                         <List />
@@ -241,7 +241,7 @@
 
         class Goals extends React.Component {
             render() {
-                return(
+                return (
                     <div>
                         <h1>Goals</h1>
                         <List />
@@ -252,9 +252,10 @@
 
         class App extends React.Component {
             render() {
-                return(
+                return (
                     <div>
-                        App
+                        <Todos />
+                        <Goals />
                     </div>
                 )
             }

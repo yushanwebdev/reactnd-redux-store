@@ -284,6 +284,7 @@
 
         class App extends React.Component {
             render() {
+                console.log(this.props.data);
                 return (
                     <div>
                         <Todos store={this.props.store} />
@@ -294,7 +295,7 @@
         }
 
         ReactDOM.render(
-            <App store={store} />,
+            <App store={store} data={store.getState()} />,
             document.getElementById('app')
         )
     </script>

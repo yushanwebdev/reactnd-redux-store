@@ -222,7 +222,11 @@
             render() {
                 return (
                     <ul>
-                        <li>List</li>
+                        {this.props.items.map((item) => (
+                            <li key={item.id}>
+                                <span>{item.name}</span>
+                            </li>   
+                        ))}
                     </ul>
                 )
             }
@@ -250,7 +254,7 @@
                             placeholder='Add Todo'
                             ref={(input) => this.input = input} />
                         <button onClick={this.addItem}>Add Todo</button>
-                        <List />
+                        <List items={this.props.todos} />
                     </div>
                 )
             }
@@ -260,6 +264,7 @@
             addItem = (e) => {
                 e.preventDefault();
                 const name = this.input.value;
+                this.input.value = '';
 
                 this.props.store.dispatch(addGoalAction({
                     id: generateId(),
@@ -276,7 +281,7 @@
                             placeholder='Add Goal'
                             ref={(input) => this.input = input} />
                         <button onClick={this.addItem}>Add Goal</button>
-                        <List />
+                        <List items={this.props.goals} />
                     </div>
                 )
             }

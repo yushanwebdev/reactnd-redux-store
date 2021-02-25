@@ -101,7 +101,7 @@
         }
 
         function loading(state = true, action) {
-            switch(action.type) {
+            switch (action.type) {
                 case RECEIVE_DATA:
                     return false;
                 default:
@@ -155,13 +155,13 @@
                             <li key={item.id}>
                                 <span
                                     onClick={() => this.props.toggle && this.props.toggle(item)}
-                                    style={{textDecoration: item.complete ? 'line-through': 'none'}}>
+                                    style={{ textDecoration: item.complete ? 'line-through' : 'none' }}>
                                     {item.name}
                                 </span>
                                 <button onClick={() => this.props.remove(item)}>
                                     X
                                 </button>
-                            </li>   
+                            </li>
                         ))}
                     </ul>
                 )
@@ -183,6 +183,11 @@
 
             removeItem = (todo) => {
                 this.props.store.dispatch(removeTodoAction(todo.id));
+                return API.deleteTodo(todo.id)
+                    .catch(() => {
+                        this.props.store.dispatch(addTodoAction(todo));
+                        alert('An error occured, Try again.');
+                    });
             }
 
             toggleItem = (todo) => {
@@ -198,8 +203,8 @@
                             placeholder='Add Todo'
                             ref={(input) => this.input = input} />
                         <button onClick={this.addItem}>Add Todo</button>
-                        <List 
-                            items={this.props.todos} 
+                        <List
+                            items={this.props.todos}
                             remove={this.removeItem}
                             toggle={this.toggleItem} />
                     </div>
@@ -227,7 +232,7 @@
                 return (
                     <div>
                         <h1>Goals</h1>
-                        <input 
+                        <input
                             type='text'
                             placeholder='Add Goal'
                             ref={(input) => this.input = input} />
@@ -256,7 +261,7 @@
                 const { store } = this.props;
                 const { todos, goals, loading } = store.getState();
 
-                if(loading === true) {
+                if (loading === true) {
                     return <h3>Loading...</h3>
                 }
 
@@ -265,7 +270,7 @@
                         <Todos todos={todos} store={store} />
                         <Goals goals={goals} store={store} />
                     </div>
-                    
+
                 )
             }
         }

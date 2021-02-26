@@ -148,6 +148,14 @@
             return result;
         }
 
+        const thunk = (store) => (next) => (action) => {
+            if (typeof action === 'function') {
+                return action(store.dispatch);
+            }
+
+            return next(action);
+        }
+
         /*
         Passing the root reducer to our store since our createStore function can only take one reducer.
         */
@@ -155,7 +163,7 @@
             todos,
             goals,
             loading
-        }), Redux.applyMiddleware(checker, logger));
+        }), Redux.applyMiddleware(thunk, checker, logger));
     </script>
 
     <script type="text/babel">

@@ -333,6 +333,18 @@
             }
         }
 
+        class ConnectedApp extends React.Component {
+            render() {
+                return (
+                    <Context.Consumer>
+                        {(store) => (
+                            <App store={store} />
+                        )}
+                    </Context.Consumer>
+                )
+            }
+        }
+
         const Context = React.createContext();
 
         class Provider extends React.Component {
@@ -346,7 +358,9 @@
         }
 
         ReactDOM.render(
-            <App store={store} />,
+            <Provider>
+                <App />
+            </Provider>,
             document.getElementById('app')
         )
     </script>

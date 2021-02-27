@@ -345,7 +345,7 @@
         /*
             Changes to Implement to connect()
             1. know when the store changes - use store.subscribe [Done now]
-            2. what state is needed - use mapStateToProps
+            2. what state is needed - use mapStateToProps [Done now]
             3. get the store from Context [Done now]
         */
         function connect(mapStateToProps) {
@@ -364,9 +364,11 @@
                     }
 
                     render() {
-                        return(
+                        const { dispatch, getState } = this.props.store;
+                        const state = getState();
+                        const stateNeeded = mapStateToProps(state);
 
-                        );
+                        return <Component {...stateNeeded} dispatch={dispatch} />
                     }
                 }
 

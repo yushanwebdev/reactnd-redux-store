@@ -346,11 +346,19 @@
             Changes to Implement to connect()
             1. know when the store changes - use store.subscribe
             2. what state is needed - use mapStateToProps
-            3. get the store from Context
+            3. get the store from Context [Done now]
         */
         function connect(mapStateToProps) {
             return (Component) => {
-
+                class ConnectedComponent extends React.Component {
+                    render() {
+                        return(
+                            <Context.Consumer>
+                                {(store) => <Receiver store={store} />}
+                            </Context.Consumer>
+                        )
+                    }
+                }                
             }
         }
 

@@ -342,6 +342,18 @@
 
         const Context = React.createContext();
 
+        /*
+            Changes to Implement to connect()
+            1. know when the store changes - use store.subscribe
+            2. what state is needed - use mapStateToProps
+            3. get the store from Context
+        */
+        function connect(mapStateToProps) {
+            return (Component) => {
+
+            }
+        }
+
         class Provider extends React.Component {
             render() {
                 return(

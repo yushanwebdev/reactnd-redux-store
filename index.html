@@ -336,17 +336,12 @@
 
         class App extends React.Component {
             componentDidMount() {
-                const { store } = this.props;
+                const { dispatch } = this.props;
 
-                store.subscribe(() => this.forceUpdate());
-
-                store.dispatch(handleInitialData());
+                dispatch(handleInitialData());
             }
 
             render() {
-                const { store } = this.props;
-                const { todos, goals, loading } = store.getState();
-
                 if (loading === true) {
                     return <h3>Loading...</h3>
                 }
@@ -372,6 +367,10 @@
                 )
             }
         }
+
+        const ConnectedApp = connect((store) => ({
+            loading: store.loading
+        }))(App);
 
         const Context = React.createContext();
 

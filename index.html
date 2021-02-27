@@ -278,9 +278,9 @@
             }
         }
 
-        const ConnectedTodos = connect((state) => {
+        const ConnectedTodos = connect((state) => ({
             todos: state.todos
-        })(Todos);
+        }))(Todos);
 
         class Goals extends React.Component {
             addItem = (e) => {
@@ -310,9 +310,9 @@
             }
         }
 
-        const ConnectedGoals = connect((state) => {
+        const ConnectedGoals = connect((state) => ({
             goals: state.goals
-        })(Goals);
+        }))(Goals);
 
         class App extends React.Component {
             componentDidMount() {

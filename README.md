@@ -2,7 +2,6 @@
 All the things I have learned about Redux related stuff from Udacity React Nanodegree.
 
 ## Q&A
-### Item 01
 **Question:**
 The connect function in the react-redux topic, has the following signature:
 ```javascript

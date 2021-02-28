@@ -2,7 +2,7 @@
 All the things I have learned about Redux related stuff from Udacity React Nanodegree.
 
 ## Q&A
-**Question:**
+### Question:
 The connect function in the react-redux topic, has the following signature:
 ```javascript
 function connect(mapStateToProps) {
@@ -21,7 +21,7 @@ I tried this first order function and it is working. If I wanted to start on wri
 
 I am generally wondering when to use higher order functions? Middleware are in the same plate where there are functions withing functions.
 
-**Answer:**
+### Answer:
 Why the same functionality cannot be achieved by a single function like this:
 ```javascript
 function connect(mapsStateToProps, component)

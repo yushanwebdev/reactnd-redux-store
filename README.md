@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Redux
+All the things I have learned about Redux related stuff from Udacity React Nanodegree.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Q&A
+### Item 01
+**Question:**
+The connect function in the react-redux topic, has the following signature:
+```javascript
+function connect(mapStateToProps) {
+  return (component) => {
+  ...
+  return ConnectedComponent 
+}
+```
 
-## Available Scripts
+So we have used a higher order function to achieve the functionality we want. Essentially, we only need to provide the states that needed as well as the component to be rendered. My question is that this higher order function seems confusing and unless they are used by Tyler, I have not a good idea on when to use them? Why the same functionality cannot be achieved by a single function like this:
+```javascript
+function connect(mapsStateToProps, component)
+```
 
-In the project directory, you can run:
+I tried this first order function and it is working. If I wanted to start on writing the connect function, I would have started with a first order function as above and not a higher order one but clearly there is a benefit (or some sort of power) with higher order functions?
 
-### `npm start`
+I am generally wondering when to use higher order functions? Middleware are in the same plate where there are functions withing functions.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Answer:**
+Why the same functionality cannot be achieved by a single function like this:
+```javascript
+function connect(mapsStateToProps, component)
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+No you can't achieve this functionality using a single function if you are going to call the connect method the way shown below.
 
-### `npm test`
+Remember how the connect method is going to be invoked-
+```javascript
+export default connect(mapStateToProps)(App)
+```
+*here mapStateToProps is a method that that returns an object having desired key-value pairs from a piece of state.*
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Now looking at this connect method call you can notice the following-
+1. It accepts mapStateToProps and [some other optional arguments](https://react-redux.js.org/api/connect#connect-parameters).
+2. It returns a function that takes your component as the argument.
 
-### `npm run build`
+You can clearly see that implementation suggested by the instructor in the video take care of the above two things.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In your implementation, you are passing your component as a parameter which won't work because here **connect will return the function (which will modify our component ) rather than calling it inside itself.** We will invoke this returned function explicitly passing our component as the argument [using the second pair of ( )] and get the modified component.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This might seem to be a bit unusual syntax but it is a popular pattern used in JavaScript and is called function currying. [You can learn more about it here](https://javascript.info/currying-partials).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+*Function currying simply means take a function, transform it and return. Currying doesn’t call a function. It just transforms it.*
 
-### `npm run eject`
+Now the thing here is, you might have used a different syntax to achieve the same result but then you would have needed to change the way you invoke the connect method. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+In this course, the instructor is actually following the exact pattern while implementing connect (in fact all other features you studied in the course) that has been used by the creator of redux and react-redux library so that at the end of the course you understand how these library works under the hood.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+>     I tried this first order function and it is working. If I wanted to start on writing the connect function, I would have started with a first order function as above and not a higher order one but clearly there is a benefit (or some sort of power) with higher order functions? I am generally wondering when to use higher order functions? Middleware are in the same plate where there are functions withing functions.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The point here is, you don't really need to bother that much about why a certain feature have been implemented in a certain way because they have already been implemented by the creators of these libraries considering certain advantages they got following a particular pattern. For example, in this case the connect method enjoys [these](https://javascript.info/currying-partials#currying-what-for) advantages of the concept function currying.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Similarly higher order functions is used when we want to pass a function as an argument to a function or return a function from another function (in fact this is the definition of higher order function).
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<hr />

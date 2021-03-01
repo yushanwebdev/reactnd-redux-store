@@ -1,7 +1,7 @@
 import API from 'goals-todos-api';
 
-const ADD_GOAL = 'ADD_GOAL';
-const REMOVE_GOAL = 'REMOVE_GOAL';
+export const ADD_GOAL = 'ADD_GOAL';
+export const REMOVE_GOAL = 'REMOVE_GOAL';
 
 function addGoalAction(goal) {
     return {
@@ -17,7 +17,7 @@ function removeGoalAction(id) {
     }
 }
 
-function handleAddGoal(name, cb) {
+export function handleAddGoal(name, cb) {
     return (dispatch) => {
         return API.saveGoal(name)
             .then((goal) => {
@@ -30,7 +30,7 @@ function handleAddGoal(name, cb) {
     }
 }
 
-function handleDeleteGoal(goal) {
+export function handleDeleteGoal(goal) {
     return (dispatch) => {
         dispatch(removeGoalAction(goal.id));
 

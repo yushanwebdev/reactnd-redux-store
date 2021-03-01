@@ -1,6 +1,8 @@
 # Redux
 All the things I have learned about Redux related stuff from Udacity React Nanodegree.
 
+**File Structure** - [real-style folder structure](https://reactjs.org/docs/faq-structure.html)
+
 ## Q&A
 ### Question:
 The connect function in the react-redux topic, has the following signature:

@@ -1,7 +1,7 @@
 # Redux
 All the things I have learned about Redux related stuff from Udacity React Nanodegree.
 
-**File Structure** - [real-style folder structure](https://reactjs.org/docs/faq-structure.html)
+**File Structure** - "Rails-style" Organization
 
 ## Q&A
 ### Question:

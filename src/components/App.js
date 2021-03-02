@@ -1,9 +1,10 @@
+import { Component } from 'react';
 import { handleInitialData } from '../actions/shared';
 import ConnectedTodos from './Todos';
 import ConnectedGoals from './Goals';
 import { connect } from 'react-redux';
 
-class App extends React.Component {
+class App extends Component {
   componentDidMount() {
       const { dispatch } = this.props;
 

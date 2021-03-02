@@ -1,3 +1,4 @@
+import { Component } from 'react';
 import {
     handleAddTodo,
     handleDeleteTodo,
@@ -5,7 +6,7 @@ import {
 } from '../actions/todos';
 import { connect } from 'react-redux';
 
-class Todos extends React.Component {
+class Todos extends Component {
     addItem = (e) => {
         e.preventDefault();
 

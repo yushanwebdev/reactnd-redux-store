@@ -1,10 +1,11 @@
+import { Component } from 'react';
 import {
     handleAddGoal,
     handleDeleteGoal
 } from '../actions/goals';
 import { connect } from 'react-redux';
 
-class Goals extends React.Component {
+class Goals extends Component {
     addItem = (e) => {
         e.preventDefault();
         this.props.dispatch(handleAddGoal(

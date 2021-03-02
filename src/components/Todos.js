@@ -4,6 +4,7 @@ import {
     handleDeleteTodo,
     handleToggleTodo
 } from '../actions/todos';
+import List from './List';
 import { connect } from 'react-redux';
 
 class Todos extends Component {

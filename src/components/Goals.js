@@ -3,6 +3,7 @@ import {
     handleAddGoal,
     handleDeleteGoal
 } from '../actions/goals';
+import List from './List';
 import { connect } from 'react-redux';
 
 class Goals extends Component {

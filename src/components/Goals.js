@@ -2,7 +2,7 @@ import {
     handleAddGoal,
     handleDeleteGoal
 } from '../actions/goals';
-import { connect } from 'redux-thunk';
+import { connect } from 'react-redux';
 
 class Goals extends React.Component {
     addItem = (e) => {

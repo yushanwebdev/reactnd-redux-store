@@ -3,7 +3,7 @@ import {
     handleDeleteTodo,
     handleToggleTodo
 } from '../actions/todos';
-import { connect } from 'redux-thunk';
+import { connect } from 'react-redux';
 
 class Todos extends React.Component {
     addItem = (e) => {

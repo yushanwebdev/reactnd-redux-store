@@ -13,5 +13,5 @@ ReactDOM.render(
   <Provider store={store}>
       <ConnectedApp />
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('root')
 )
